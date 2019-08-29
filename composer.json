@@ -1,0 +1,25 @@
+{
+  "name": "lapix/celmedia-sms",
+  "description": "Celmedia SMS API SDK",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alejandro Rivera",
+      "email": "alejo@lapix.com.co"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Lapix\\Celmedia\\Sms\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "phpunit/phpunit": "^8.3"
+  }
+}
