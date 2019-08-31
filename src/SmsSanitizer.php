@@ -14,7 +14,7 @@ class SmsSanitizer implements Sanitizer
      */
     public function sanitize(string $body): string
     {
-        return str_replace($this->specialCharacters(), $this->replaceWith(), $body);
+        return str_replace($this->remove(), $this->replaceWith(), $body);
     }
 
     /**
@@ -22,95 +22,66 @@ class SmsSanitizer implements Sanitizer
      */
     private function replaceWith(): array
     {
-        return [
-            'a',
-            'A',
-            'e',
-            'E',
-            'i',
-            'I',
-            'o',
-            'O',
-            'u',
-            'U',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            'a',
-            'o',
-            '',
-            '',
-            'u',
-            '(',
-            ')',
-            '',
-            '',
-            'n',
-            'N',
-            '(',
-            ')',
-            '',
-            '',
-            '',
-            'Y',
-            '-',
-            ',',
-            '1/2',
-            '1/4',
-            '3/4',
-        ];
+        return array_values($this->specialCharacters());
     }
 
     /**
      * @return string[]
      */
-    private function specialCharacters()
+    private function remove(): array
     {
+        return array_keys($this->specialCharacters());
+    }
 
+    /**
+     * @return array
+     */
+    private function specialCharacters(): array
+    {
         return [
-            'á',
-            'Á',
-            'é',
-            'É',
-            'í',
-            'Í',
-            'ó',
-            'Ó',
-            'ú',
-            'Ú',
-            '^',
-            '`',
-            '¬',
-            '‘',
-            '“',
-            '*',
-            '#',
-            'ª',
-            'º',
-            '>',
-            '<',
-            'ü',
-            '[',
-            ']',
-            '¿',
-            '¡',
-            'ñ',
-            'Ñ',
-            '{',
-            '}',
-            '\\',
-            '/',
-            '|',
-            '&',
-            '~',
-            ';',
-            '½',
-            '¼',
-            '¾',
+            'á' => 'a',
+            'Á' => 'A',
+            'é' => 'e',
+            'É' => 'E',
+            'í' => 'i',
+            'Í' => 'I',
+            'ó' => 'o',
+            'Ó' => 'O',
+            'ú' => 'u',
+            'Ú' => 'U',
+            '^' => '',
+            '`' => '',
+            '¬' => '',
+            '‘' => '',
+            '“' => '',
+            '*' => '',
+            '#' => '',
+            'ª' => 'a',
+            'º' => 'o',
+            '>' => '',
+            '<' => '',
+            'ü' => 'u',
+            '[' => '(',
+            ']' => ')',
+            '¿' => '',
+            '¡' => '',
+            'ñ' => 'n',
+            'Ñ' => 'N',
+            'ý' => 'y',
+            'Ý' => 'Y',
+            'ÿ' => 'y',
+            'Ÿ' => 'Y',
+            '{' => '(',
+            '}' => ')',
+            '\\' => '',
+            '/' => '',
+            '|' => '',
+            '&' => 'Y',
+            '~' => '-',
+            ';' => ',',
+            '½' => '1/2',
+            '¼' => '1/4',
+            '¾' => '3/4',
         ];
     }
 }

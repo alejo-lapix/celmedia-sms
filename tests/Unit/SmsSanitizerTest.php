@@ -32,7 +32,7 @@ class SmsSanitizerTest extends TestCase
     {
         return [
             ['Example Test', 'Example Test'],
-            ['aAeEiIoOuUYnN', 'áÁéÉíÍóÓúÚ&ñÑ¡'],
+            ['aAeEiIoOuUYnNyYyY', 'áÁéÉíÍóÓúÚ&ñÑýÝÿŸ¡'],
             // TODO Add tests
         ];
     }
